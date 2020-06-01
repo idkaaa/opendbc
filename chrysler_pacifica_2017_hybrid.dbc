@@ -364,7 +364,16 @@ BO_ 512 NEW_MSG_200: 8 XXX
  SG_ COUNTER : 51|4@0+ (1,0) [0|15] "" XXX
  SG_ CHECKSUM : 63|8@0+ (1,0) [0|255] "" XXX
 
+BO_ 840 DOOR_LOCKS: 4000 00c0 2d01 0002
 
+4000 00c0 2d01 0002
+^ This flips from 0 to 4: 0 is unlocked and 4 is locked
+4000 00c0 2d01 0002
+                  ^ This flips from 0 to 2: same as above.
+4000 00c0 2d01 0002
+       ^ This appears to be the command to lock/unlock. 0 when not actively switching state. Switches to c twice when unlocking and once when locking. 
+       I guess the c getting sent twice for one unlock signal is due to my global unlock setting. Global unlock is where all the doors unlock with one
+       press of the keyfob lock/unlock button.
 
 
 CM_ SG_ 258 UNKNOWN_STEERING "never goes above 4. see if human-applied torque";
