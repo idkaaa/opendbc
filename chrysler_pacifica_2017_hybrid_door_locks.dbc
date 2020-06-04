@@ -49,9 +49,10 @@ BO_ 514 SPEED_1: 8 XXX
 
 BO_ 653 BRAKE_MODULE: 2 XXX
  SG_ BRAKE_PRESSURE : 15|8@0+ (1,0) [0|255] "" XXX
- SG_ BRAKE_PRESSED : 4|1@0+ (1,0) [0|4] "" XXX
+ SG_ BRAKE_PRESSED : 4|1@0+ (1,0) [0|4] "" XXXd
 
 BO_ 820 DOORS: 8 XXX
+ SG_ DOORS_UNLOCKED_1 : 6|1@0+ (1,0) [0|1] "" XXX
  SG_ DOOR_OPEN_FR : 18|1@0+ (1,0) [0|1] "" XXX
  SG_ DOOR_OPEN_RL : 19|1@0+ (1,0) [0|1] "" XXX
  SG_ DOOR_OPEN_RR : 20|1@0+ (1,0) [0|1] "" XXX
@@ -60,6 +61,7 @@ BO_ 820 DOORS: 8 XXX
  SG_ TURN_LIGHT_LEFT : 31|1@0+ (1,0) [0|1] "" XXX
  SG_ TURN_LIGHT_RIGHT : 30|1@0+ (1,0) [0|1] "" XXX
  SG_ HIGH_BEAM_DISPLAY : 58|1@0+ (1,0) [0|1] "" XXX
+ SG_ DOORS_UNLOCKED_2 : 59|1@0+ (1,0) [0|1] "" XXX 
 
 BO_ 746 GEAR: 5 XXX
  SG_ PRNDL : 2|3@0+ (1,0) [0|7] "" XXX
@@ -364,17 +366,6 @@ BO_ 512 NEW_MSG_200: 8 XXX
  SG_ COUNTER : 51|4@0+ (1,0) [0|15] "" XXX
  SG_ CHECKSUM : 63|8@0+ (1,0) [0|255] "" XXX
 
-BO_ 840 DOOR_LOCKS: 4000 00c0 2d01 0002
-
-4000 00c0 2d01 0002
-^ This flips from 0 to 4: 0 is unlocked and 4 is locked
-4000 00c0 2d01 0002
-                  ^ This flips from 0 to 2: same as above.
-4000 00c0 2d01 0002
-       ^ This appears to be the command to lock/unlock. 0 when not actively switching state. Switches to c twice when unlocking and once when locking. 
-       I guess the c getting sent twice for one unlock signal is due to my global unlock setting. Global unlock is where all the doors unlock with one
-       press of the keyfob lock/unlock button.
-
 
 CM_ SG_ 258 UNKNOWN_STEERING "never goes above 4. see if human-applied torque";
 CM_ SG_ 258 STEER_ANGLE "positive is left (counter-clockwise)";
@@ -382,6 +373,7 @@ CM_ SG_ 514 SPEED_LEFT "TODO find upper limit";
 CM_ SG_ 653 BRAKE_PRESSURE "max seems to be 148";
 CM_ SG_ 820 TURN_LIGHT_LEFT "oscillates with the light blinking";
 CM_ SG_ 820 TURN_LIGHT_RIGHT "hazard blinks both right and left lights";
+CM_ SG_ 820 DOOR_UNLOCKED_1 "enabled when doors are unlocked"
 CM_ SG_ 746 PRNDL "5=L, 4=D, 3=N, 2=R, 1=P";
 CM_ SG_ 746 GEAR_CHECKSUM "different than the LKAS checksum. unknown non-simple algorithm. just build a lookup table for it.";
 CM_ SG_ 284 SPEED_RELATED_1 "Another Speed Signal, Maybe RPMs?";
